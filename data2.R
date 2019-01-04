@@ -213,3 +213,73 @@ res2
 #mean of x mean of y 
 # 18.82562  13.55143 
 
+
+# Affichage calcule de la t-statistic pour le taux de croissance européenne de 1960 à 2010
+res
+
+#Welch Two Sample t-test
+
+#data:  annualGrowth and annualGrowth1117
+#t = 3.3409, df = 15.016, p-value = 0.004462
+#alternative hypothesis: true difference in means is not equal to 0
+#95 percent confidence interval:
+# 0.0006174578 0.0027931499
+#sample estimates:
+#  mean of x   mean of y 
+#0.004082680 0.002377376 
+
+names(res)
+#[1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"   
+#[6] "null.value"  "alternative" "method"      "data.name"  
+res$statistic
+#       t 
+#3.340936 
+res[['statistic']]
+#     t 
+#3.340936 
+ts1 = replicate(1000,t.test(rnorm(10),rnorm(10))$statistic)
+range(ts1)
+#[1] -3.521099  4.036038
+pts = seq(-3.4,4.0,length=100)
+plot(pts,dt(pts,df=18),col='red',type='l')
+#Affichage de la ligne correspondant à la densité
+lines(density(ts))
+
+
+
+# Affichage calcule de la t-statistic pour la population européenne de plus de 65 ans
+res2
+
+#Welch Two Sample t-test
+
+#data:  europepop111765 and europepop601065
+#t = 12.789, df = 24.187, p-value = 2.953e-12
+#alternative hypothesis: true difference in means is not equal to 0
+#95 percent confidence interval:
+# 4.423386 6.124990
+#sample estimates:
+#mean of x mean of y 
+#18.82562  13.55143 
+
+names(res2)
+#1] "statistic"   "parameter"   "p.value"     "conf.int"   
+#5] "estimate"    "null.value"  "alternative" "method"     
+#9] "data.name"  
+res2$statistic
+       t 
+#2.78904 
+res2[['statistic']]
+       t 
+#2.78904 
+ts = replicate(1000,t.test(rnorm(10),rnorm(10))$statistic)
+range(ts)
+#1] -3.606932  3.654277
+pts = seq(-4.5,4.5,length=100)
+pts = seq(-3.6, 3.6,length=100)
+plot(pts,dt(pts,df=18),col='red',type='l')
+#Affichage de la ligne correspondant à la densité
+lines(density(ts))
+
+
+
+
